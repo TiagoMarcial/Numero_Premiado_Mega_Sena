@@ -146,7 +146,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="1dp"
         android:textAlignment="center"
-        android:text="Resultado: 02-08-50-06-89-94-50-70-54-45-87-54-23-24-50"
+        tools:text="Resultado: 02-08-50-06-89-94-50-70-54-45-87-54-23-24-50"
         android:textSize="18sp"
         android:textStyle="bold"
         android:textColor="@color/black"
