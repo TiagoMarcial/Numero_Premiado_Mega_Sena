@@ -9,7 +9,7 @@
     tools:context=".MainActivity">
 
     <Button
-        android:id="@+id/button_mostlucky"
+        android:id="@+id/button_random"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="49dp"
@@ -33,6 +33,7 @@
         android:inputType="number"
         android:textAlignment="center"
         android:textStyle="bold"
+        android:maxLength="2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_init" />
@@ -41,7 +42,7 @@
         android:id="@+id/text_init"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="148dp"
+        android:layout_marginTop="105dp"
         android:text="Digite quantos números deseja para sua aposta, escolha dentre as opções e gere o número premiado"
         android:textAlignment="center"
         android:textSize="17sp"
@@ -51,7 +52,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/button_mostlucky"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
@@ -63,10 +64,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_mostlucky" />
+        app:layout_constraintTop_toBottomOf="@+id/button_random" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/button_leastlucky"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
@@ -78,10 +79,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button4" />
+        app:layout_constraintTop_toBottomOf="@+id/button_mostlucky" />
 
     <Button
-        android:id="@+id/button5"
+        android:id="@+id/button_mostluckmonth"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
@@ -94,10 +95,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button3" />
+        app:layout_constraintTop_toBottomOf="@+id/button_leastlucky" />
 
     <Button
-        android:id="@+id/button8"
+        android:id="@+id/button_leastluckymonth"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
@@ -110,10 +111,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button5" />
+        app:layout_constraintTop_toBottomOf="@+id/button_mostluckmonth" />
 
     <Button
-        android:id="@+id/button7"
+        android:id="@+id/button_finalpremium"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
@@ -126,31 +127,33 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button8" />
+        app:layout_constraintTop_toBottomOf="@+id/button_leastluckymonth" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="1dp"
         android:text="Como Funciona: depois de você definir quantos números deseja na sua aposta e escolher dentre as opções, nós dobramos a quantidade segundo o ranking e geramos os números a partir do sorteio entre eles."
         android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button7" />
+        app:layout_constraintTop_toBottomOf="@+id/button_finalpremium" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/text_result"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="1dp"
         android:textAlignment="center"
-        tools:text="Resultado: 02-08-50-06-89-94-50-70-54-45-87-54-23-24-50"
+        tools:text="Resultado: 02-08-50-06-89-94-90-25-45-25-45-84-54-53-25"
         android:textSize="18sp"
         android:textStyle="bold"
         android:textColor="@color/black"
-        app:layout_constraintBottom_toTopOf="@+id/button_mostlucky"
+        app:layout_constraintBottom_toTopOf="@+id/button_random"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
