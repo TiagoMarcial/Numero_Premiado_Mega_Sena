@@ -29,6 +29,7 @@ class MainActivity : AppCompatActivity() {
         val inputText: EditText = findViewById(R.id.edit_number)
         val randomNumber: Button = findViewById(R.id.button_random)
         var result: TextView = findViewById(R.id.text_result)
+        var mostLuck: Button = findViewById(R.id.button_mostlucky)
         prefs = getSharedPreferences("db", Context.MODE_PRIVATE)
         val lastApostate = prefs.getString("result", "Nenhum registro salvo!")
         if (lastApostate !=null) {
@@ -37,11 +38,15 @@ class MainActivity : AppCompatActivity() {
 
         randomNumber.setOnClickListener{
             val text = inputText.text.toString()
-            numbersRandom(text, result)
+            numbersRandom(text, result, 1)
              //APLICANDO UM RESULTADO VAZIO
         }
+        mostLuck.setOnClickListener {
+            val text = inputText.text.toString()
+            numbersRandom(text, result, 2)
+        }
     }
-    private fun numbersRandom(text: String, result: TextView) {
+    private fun numbersRandom(text: String, result: TextView, idButton: Int) {
         if (text.isEmpty()){
             Toast.makeText(this, "Digite um número entre 6 e 15", Toast.LENGTH_LONG).show()
         } else {
@@ -49,20 +54,39 @@ class MainActivity : AppCompatActivity() {
             if(inputNumber !in 6..15) {
                 Toast.makeText(this, "Digite um número entre 6 e 15", Toast.LENGTH_LONG).show()
             } else {
-                val random = Random.Default
-                var numbers = mutableSetOf<Int>()
-                while (true) {
-                    val number = random.nextInt(1, 60)
-                    numbers.add(number)
-                    if (inputNumber == numbers.size) {
-                        break
+                if (idButton == 1) {
+                    val random = Random.Default
+                    var numbers = mutableSetOf<Int>()
+                    while (true) {
+                        val number = random.nextInt(1, 60)
+                        numbers.add(number)
+                        if (inputNumber == numbers.size) {
+                            break
+                        }
                     }
+                    result.setText("Resultado: ${numbers.joinToString ( " - " )}")
+                    val lastResult = "${numbers.joinToString ( " - " )}"
+                    val editor = prefs.edit()
+                    editor.putString("result", lastResult)
+                    editor.commit()
+                } else if (idButton == 2) {
+                    val quantityDraw = inputNumber * 2
+                    val avaliableNumbers = listOf(10,53,5,34,23,37,42,30,33,35,4,32,41,11,27,44,17,38,43,28,46,56,16,54,29,49,36,51,6,24,52,2)
+                    var filteredNumbers = avaliableNumbers.take(quantityDraw)
+                    var drawnNumberResult = mutableSetOf<Int>()
+                    while (drawnNumberResult.size < inputNumber){
+                        var drawnNumber = filteredNumbers.sorted().shuffled().take(inputNumber)
+                        drawnNumberResult.addAll(drawnNumber)
+                        if (drawnNumberResult.size == inputNumber){
+                            break
+                        }
+                    }
+                    result.setText("Resultado: ${drawnNumberResult.joinToString ( " - " )}")
+                    val lastResult = "${drawnNumberResult.joinToString ( " - " )}"
+                    val editor = prefs.edit()
+                    editor.putString("result", lastResult)
+                    editor.commit()
                 }
-                result.setText("Resultado: ${numbers.joinToString ( " - " )}")
-                val lastResult = "${numbers.joinToString ( " - " )}"
-                val editor = prefs.edit()
-                editor.putString("result", lastResult)
-                editor.commit()
             }
         }
     }

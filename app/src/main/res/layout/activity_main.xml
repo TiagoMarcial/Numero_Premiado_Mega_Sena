@@ -31,9 +31,9 @@
         android:ems="13"
         android:hint="Digite um número entre 6 e 15"
         android:inputType="number"
+        android:maxLength="2"
         android:textAlignment="center"
         android:textStyle="bold"
-        android:maxLength="2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_init" />
@@ -149,14 +149,14 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="1dp"
         android:textAlignment="center"
-        tools:text="Resultado: 02-08-50-06-89-94-90-25-45-25-45-84-54-53-25"
+        android:textColor="@color/black"
         android:textSize="18sp"
         android:textStyle="bold"
-        android:textColor="@color/black"
         app:layout_constraintBottom_toTopOf="@+id/button_random"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edit_number" />
+        app:layout_constraintTop_toBottomOf="@+id/edit_number"
+        tools:text="Resultado: 02-08-50-06-89-94-90-25-45-25-45-84-54-53-25" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
