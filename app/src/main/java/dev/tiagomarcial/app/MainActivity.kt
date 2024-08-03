@@ -30,6 +30,7 @@ class MainActivity : AppCompatActivity() {
         val randomNumber: Button = findViewById(R.id.button_random)
         var result: TextView = findViewById(R.id.text_result)
         var mostLuck: Button = findViewById(R.id.button_mostlucky)
+        var leastLuck: Button = findViewById(R.id.button_leastlucky)
         prefs = getSharedPreferences("db", Context.MODE_PRIVATE)
         val lastApostate = prefs.getString("result", "Nenhum registro salvo!")
         if (lastApostate !=null) {
@@ -44,6 +45,10 @@ class MainActivity : AppCompatActivity() {
         mostLuck.setOnClickListener {
             val text = inputText.text.toString()
             numbersRandom(text, result, 2)
+        }
+        leastLuck.setOnClickListener {
+            val text = inputText.text.toString()
+            numbersRandom(text, result, 3)
         }
     }
     private fun numbersRandom(text: String, result: TextView, idButton: Int) {
@@ -72,7 +77,25 @@ class MainActivity : AppCompatActivity() {
                 } else if (idButton == 2) {
                     val quantityDraw = inputNumber * 2
                     val avaliableNumbers = listOf(10,53,5,34,23,37,42,30,33,35,4,32,41,11,27,44,17,38,43,28,46,56,16,54,29,49,36,51,6,24,52,2)
-                    var filteredNumbers = avaliableNumbers.take(quantityDraw)
+                    val filteredNumbers = avaliableNumbers.take(quantityDraw)
+                    var drawnNumberResult = mutableSetOf<Int>()
+                    while (drawnNumberResult.size < inputNumber){
+                        var drawnNumber = filteredNumbers.sorted().shuffled().take(inputNumber)
+                        drawnNumberResult.addAll(drawnNumber)
+                        if (drawnNumberResult.size == inputNumber){
+                            break
+                        }
+                    }
+                    result.setText("Resultado: ${drawnNumberResult.joinToString ( " - " )}")
+                    val lastResult = "${drawnNumberResult.joinToString ( " - " )}"
+                    val editor = prefs.edit()
+                    editor.putString("result", lastResult)
+                    editor.commit()
+                }
+                else if (idButton == 3) {
+                    val quantityDraw = inputNumber * 2
+                    val avaliableNumbers = listOf(59,20,13,15,21,55,26,22,3,48,40,31,9,7,1,60,39,57,19,12,14,47,18,58,50,45,8,25,2,52,24,6)
+                    val filteredNumbers = avaliableNumbers.take(quantityDraw)
                     var drawnNumberResult = mutableSetOf<Int>()
                     while (drawnNumberResult.size < inputNumber){
                         var drawnNumber = filteredNumbers.sorted().shuffled().take(inputNumber)
