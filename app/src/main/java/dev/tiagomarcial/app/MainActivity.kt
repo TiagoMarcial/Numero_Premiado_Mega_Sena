@@ -11,8 +11,6 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import java.time.LocalDate
-import java.time.Month
 import java.util.Calendar
 import kotlin.random.Random
 
@@ -35,6 +33,8 @@ class MainActivity : AppCompatActivity() {
         val mostLuck: Button = findViewById(R.id.button_mostlucky)
         val leastLuck: Button = findViewById(R.id.button_leastlucky)
         val mostLuckMonth: Button = findViewById(R.id.button_mostluckmonth)
+        val leastLuckMonth: Button = findViewById(R.id.button_leastluckymonth)
+
         prefs = getSharedPreferences("db", Context.MODE_PRIVATE)
         val lastApostate = prefs.getString("result", "Nenhum registro salvo!")
         if (lastApostate !=null) {
@@ -44,7 +44,7 @@ class MainActivity : AppCompatActivity() {
         randomNumber.setOnClickListener{
             val text = inputText.text.toString()
             numbersRandom(text, result, 1)
-             //APLICANDO UM RESULTADO VAZIO
+
         }
         mostLuck.setOnClickListener {
             val text = inputText.text.toString()
@@ -58,6 +58,11 @@ class MainActivity : AppCompatActivity() {
             val text = inputText.text.toString()
             numbersRandom(text, result, 4)
         }
+        leastLuckMonth.setOnClickListener {
+            val text = inputText.text.toString()
+            numbersRandom(text, result, 5)
+        }
+
     }
     private fun numbersRandom(text: String, result: TextView, idButton: Int) {
         if (text.isEmpty()){
@@ -67,7 +72,7 @@ class MainActivity : AppCompatActivity() {
             if(inputNumber !in 6..15) {
                 Toast.makeText(this, "Digite um número entre 6 e 15", Toast.LENGTH_LONG).show()
             } else {
-                //Botão 1 (Gerar números completamente aleatórios)
+                //BOTÃO 1 (Gerar números completamente aleatórios)
                 if (idButton == 1) {
                     val random = Random.Default
                     var numbers = mutableSetOf<Int>()
@@ -121,17 +126,79 @@ class MainActivity : AppCompatActivity() {
                     editor.commit()
                 }
                 else if (idButton == 4) {
+                    val quantityDraw = inputNumber * 2
                     val calendar = Calendar.getInstance()
                     val month = calendar.get(Calendar.MONTH) + 1
                     val avaliableNumbers = listMonth(month)
+                    val filteredNumbers = avaliableNumbers.take(quantityDraw)
+                    val drawnNumberResult = mutableSetOf<Int>()
+                    while (drawnNumberResult.size < inputNumber){
+                        val drawnNumber = filteredNumbers.sorted().shuffled().take(inputNumber)
+                        drawnNumberResult.addAll(drawnNumber)
+                        if (drawnNumberResult.size == inputNumber){
+                            break
+                        }
+                    }
+                    result.setText("Resultado: ${drawnNumberResult.joinToString ( " - " )}")
+                    val lastResult = "${drawnNumberResult.joinToString ( " - " )}"
+                    val editor = prefs.edit()
+                    editor.putString("result", lastResult)
+                    editor.commit()
+                }
+                else if (idButton == 5 ) {
+                    val quantityDraw = inputNumber * 2
+                    val calendar = Calendar.getInstance()
+                    val month = calendar.get(Calendar.MONTH) + 1
+                    val avaliableNumbers = listMonth(month)
+                    val filteredNumbers = avaliableNumbers.take(quantityDraw)
+                    val drawnNumberResult = mutableSetOf<Int>()
+                    while (drawnNumberResult.size < inputNumber){
+                        val drawnNumber = filteredNumbers.sorted().shuffled().take(inputNumber)
+                        drawnNumberResult.addAll(drawnNumber)
+                        if (drawnNumberResult.size == inputNumber){
+                            break
+                        }
+                    }
+                    result.setText("Resultado: ${drawnNumberResult.joinToString ( " - " )}")
+                    val lastResult = "${drawnNumberResult.joinToString ( " - " )}"
+                    val editor = prefs.edit()
+                    editor.putString("result", lastResult)
+                    editor.commit()
                 }
             }
         }
     }
-    fun listMonth(month: Int) : List<Int> {
+    private fun listMonth(month: Int) : List<Int> {
         return when (month) {
             1 -> listOf(46,13,21,35,44,30,25,52,41,54,28,20,36,42,24,19,59,33,18,17,56,22,12,48,29,47,16,5,38,26,32)
+            2 -> listOf(1,2,5,42,8,9,11,13,44,52,24,45,46,4,10,19,51,6,43,30,12,14,20,27,22,37,23,57,25,48)
+            3 -> listOf(18,3,2,35,11,31,47,46,34,54,13,19,49,17,16,6,10,60,14,4,27,39,33,53,32,41,45,42,20,24,40,30)
+            4 -> listOf(38,23,42,39,36,59,30,19,17,53,5,49,58,25,50,35,10,20,44,40,7,43,46,52,9,16,28,60,34,14,57)
+            5 -> listOf(23,39,36,19,46,56,53,25,27,10,37,31,32,12,50,29,7,60,14,44,8,11,30,54,52,28,47,45,41,17)
+            6 -> listOf(16,53,46,37,42,32,29,41,10,12,38,20,11,48,24,51,39,49,40,25,52,19,5,54,17,21,43,50,9,33,30,57,6,44)
+            7 -> listOf(36,27,44,43,38,19,46,42,59,25,14,24,52,5,39,16,13,56,23,10,58,17,31,45,8,12,18,32,40,29,37,54,48,30)
+            8 -> listOf(35,9,52,39,43,45,59,41,42,25,44,36,19,13,30,48,10,29,14,16,60,31,32,21,28,12,5,6,37,50)
+            9 -> listOf(29,22,48,39,53,36,32,10,37,5,38,54,9,60,43,41,55,6,16,13,11,14,15,34,40,56,17,28,18,44)
+            10 -> listOf(38,18,30,17,46,29,28,49,39,44,53,10,60,57,19,56,9,41,32,5,11,23,50,16,31,26,4,13,43,22,37)
+            11 -> listOf(36,56,10,53,29,39,38,60,28,25,45,6,32,5,35,11,41,24,12,27,49,13,20,42,19,40,44,33,30,23)
+            12 -> listOf(32,46,41,30,19,39,36,10,23,16,45,37,20,48,29,27,28,12,40,21,52,25,38,59,33,49,15,8,42,60)
+            else -> emptyList()
+        }
+    }
+    private fun listMonthLeast (month: Int) : List<Int> {
+        return when (month) {
+            1 -> listOf()
             2 -> listOf()
+            3 -> listOf()
+            4 -> listOf()
+            5 -> listOf()
+            6 -> listOf()
+            7 -> listOf()
+            8 -> listOf()
+            9 -> listOf()
+            10 -> listOf()
+            11 -> listOf()
+            12 -> listOf()
             else -> emptyList()
         }
     }
