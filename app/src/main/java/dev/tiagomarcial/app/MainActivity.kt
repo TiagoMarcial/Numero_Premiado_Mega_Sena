@@ -149,7 +149,7 @@ class MainActivity : AppCompatActivity() {
                     val quantityDraw = inputNumber * 2
                     val calendar = Calendar.getInstance()
                     val month = calendar.get(Calendar.MONTH) + 1
-                    val avaliableNumbers = listMonth(month)
+                    val avaliableNumbers = listMonthLeast(month)
                     val filteredNumbers = avaliableNumbers.take(quantityDraw)
                     val drawnNumberResult = mutableSetOf<Int>()
                     while (drawnNumberResult.size < inputNumber){
@@ -187,18 +187,18 @@ class MainActivity : AppCompatActivity() {
     }
     private fun listMonthLeast (month: Int) : List<Int> {
         return when (month) {
-            1 -> listOf()
-            2 -> listOf()
-            3 -> listOf()
-            4 -> listOf()
-            5 -> listOf()
-            6 -> listOf()
-            7 -> listOf()
-            8 -> listOf()
-            9 -> listOf()
-            10 -> listOf()
-            11 -> listOf()
-            12 -> listOf()
+            1 -> listOf(23,27,53,51,59,40,26,33,34,50,14,9,55,7,31,10,4,60,8,58,6,49,57,45,37,15,3,39,11,32,26)
+            2 -> listOf(53,54,55,50,31,39,60,21,28,47,49,34,35,29,32,56,18,38,33,26,40,7,30,48,25,23,57,37,22,27)
+            3 -> listOf(22,23,56,21,8,36,1,55,26,57,15,58,7,43,51,38,29,50,5,44,25,37,59,9,48,30,20,24,40,42)
+            4 -> listOf(29,51,55,56,54,1,48,47,8,21,26,31,24,18,32,3,33,41,6,12,22,37,13,2,15,27,4,45,11,14)
+            5 -> listOf(59,3,22,55,13,16,24,34,48,43,1,21,4,5,33,6,51,57,49,58,20,2,26,35,38,18,42,15,9,40)
+            6 -> listOf(56,55,23,59,8,22,4,36,35,15,28,27,31,1,2,45,26,3,7,47,34,13,18,58,60,14,44,6,57,30,33,9)
+            7 -> listOf(1,51,4,2,7,3,47,28,49,22,15,6,20,55,9,34,11,53,35,21,26,57,33,50,60,30,48,54,37,29,40)
+            8 -> listOf(23,27,2,51,4,11,56,1,58,15,22,24,40,49,55,26,33,7,57,53,46,47,34,3,20,18,17,38,54,8)
+            9 -> listOf(59,23,35,45,24,49,21,8,46,12,30,51,1,57,2,26,4,3,58,47,33,31,27,50,52,25,19,7,42,20,18)
+            10 -> listOf(51,59,47,36,1,21,52,7,12,55,35,42,54,2,58,24,27,48,25,45,40,6,8,33,34,15,3,20,14,22,43,13,4)
+            11 -> listOf(57,51,4,34,59,50,47,3,15,48,9,18,26,1,14,7,21,16,2,58,17,37,55,22,8,43,54,52,46,31)
+            12 -> listOf(56,57,58,55,53,35,54,47,2,11,44,31,43,13,14,1,6,9,26,18,34,3,4,51,7,17,22,5,24,50)
             else -> emptyList()
         }
     }
