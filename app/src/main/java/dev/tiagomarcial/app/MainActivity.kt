@@ -34,6 +34,7 @@ class MainActivity : AppCompatActivity() {
         val leastLuck: Button = findViewById(R.id.button_leastlucky)
         val mostLuckMonth: Button = findViewById(R.id.button_mostluckmonth)
         val leastLuckMonth: Button = findViewById(R.id.button_leastluckymonth)
+        val finalPremium: Button = findViewById(R.id.button_finalpremium)
 
         prefs = getSharedPreferences("db", Context.MODE_PRIVATE)
         val lastApostate = prefs.getString("result", "Nenhum registro salvo!")
@@ -44,7 +45,6 @@ class MainActivity : AppCompatActivity() {
         randomNumber.setOnClickListener{
             val text = inputText.text.toString()
             numbersRandom(text, result, 1)
-
         }
         mostLuck.setOnClickListener {
             val text = inputText.text.toString()
@@ -61,6 +61,10 @@ class MainActivity : AppCompatActivity() {
         leastLuckMonth.setOnClickListener {
             val text = inputText.text.toString()
             numbersRandom(text, result, 5)
+        }
+        finalPremium.setOnClickListener {
+            val text = inputText.text.toString()
+            numbersRandom(text, result, 6)
         }
 
     }
@@ -164,6 +168,27 @@ class MainActivity : AppCompatActivity() {
                     val editor = prefs.edit()
                     editor.putString("result", lastResult)
                     editor.commit()
+                }
+                else if (idButton == 6) {
+                    val quantityDraw = inputNumber * 2
+                    val avaliableNumbers = listOf(10,33,5,56,41,58,36,34,32,35,3,24,42,12,22,17,37,46,51,11,38,20,40,53,4,6,18,25,2,59)
+                    val filteredNumbers = avaliableNumbers.take(quantityDraw)
+                    val drawnNumberResult = mutableSetOf<Int>()
+                    while (drawnNumberResult.size < inputNumber){
+                        val drawnNumber = filteredNumbers.sorted().shuffled().take(inputNumber)
+                        drawnNumberResult.addAll(drawnNumber)
+                        if (drawnNumberResult.size == inputNumber){
+                            break
+                        }
+                    }
+                    result.setText("Resultado: ${drawnNumberResult.joinToString ( " - " )}")
+                    val lastResult = "${drawnNumberResult.joinToString ( " - " )}"
+                    val editor = prefs.edit()
+                    editor.putString("result", lastResult)
+                    editor.commit()
+                }
+                else {
+                    Toast.makeText(this, "Parametros inválidos", Toast.LENGTH_LONG).show()
                 }
             }
         }
