@@ -25,8 +25,7 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        // FAZER FUNÇÃO PRIVADA DO BOTÃO E COLOCAR UM NOVO IF DEPOIS DO VAZIO, POS 1 IF SÓ CONVERTE O NULL EM NUMERO E NÃO APLICA O TOAST
-        // É BASICAMENTE A MESMA LÓGICA PARA TODOS OS BOTÕES, SÓ MUDA O ESCOPO PASSÍVEL DE SORTEIO,  DAR UM JEITO DE SÓ FAZER 1 VEZ
+
         val inputText: EditText = findViewById(R.id.edit_number)
         val randomNumber: Button = findViewById(R.id.button_random)
         val result: TextView = findViewById(R.id.text_result)
