@@ -2,6 +2,8 @@
 
 Este é um aplicativo desenvolvido para ajudar na escolha dos números para apostas na Mega Sena. Ele gera combinações de números com base nos dados históricos de sorteios, oferecendo diversas possibilidades de escolha com base nos números mais e menos sorteados ao longo da história da Mega Sena.
 
+![Imagem da aplicação](app/src/main/res/drawable/appimg.png)
+
 ### Funcionalidades:
 - Geração de números para apostas utilizando os números mais sorteados.
 - Geração de números utilizando os números menos sorteados.
@@ -13,6 +15,6 @@ O aplicativo analisa os sorteios passados da Mega Sena e cria combinações de n
 ### Tecnologias utilizadas:
 - Kotlin
 
-![imagem do app](res/drawable/appimg.png)
+
 
 
