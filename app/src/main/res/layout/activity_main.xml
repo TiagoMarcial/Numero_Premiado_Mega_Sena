@@ -141,6 +141,7 @@
         android:text="Como Funciona: depois de você definir quantos números deseja na sua aposta e escolher dentre as opções, nós dobramos a quantidade segundo o ranking e geramos os números a partir do sorteio entre eles."
         android:textStyle="bold"
         android:textColor="@color/black"
+        android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
